@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatTableDatSource} from '@angular/material';
+import {MatTableDataSource} from '@angular/material/table';
 import { Department } from 'src/app/models/department-model';
 import { DepartmentService } from 'src/app/services/department.service';
 @Component({
@@ -11,27 +11,27 @@ export class ShowDepComponent implements OnInit {
 
   constructor(private service: DepartmentService) { }
 listData : MatTableDataSource<any>;
-DisplayColumns: string[]=['options', 'DepartmentID', 'DepartmentName']
+displayedColumns: string[]=['options', 'DepartmentID', 'DepartmentName']
 
-  ngOnInit():  {
-    this.refreshDeplist();
+  ngOnInit()  {
+    this.refreshDepList();
   }
 refreshDepList(){
   //var dummyData=[{DepartmentID:1, DepartmentName:"IT"},
 //{DepartmentID:2, DepartmentName:"Finance"}]
 //this.listData = new MatTableDatSource(dummyData);
-this.listData.getDepList().subscribe(data=>{
-  this.listData = new MatTableDatSource(Data);
+this.service.getDepList().subscribe(data=>{
+  this.listData = new MatTableDataSource(data);
 });
 }
 
 
 
 
-onedit(dep:Department){
+onEdit(dep:Department){
   console.log(dep)
 }
-ondelete(id:number){
+onDelete(id:number){
   console.log(id);
 }
 }

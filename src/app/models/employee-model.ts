@@ -3,5 +3,5 @@ export class Employee{
     EmployeeName: string
     Department:string
     MailID: string
-   DOJ: Date
+    DOJ: Date
 }
