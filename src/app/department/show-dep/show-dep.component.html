@@ -1,8 +1,8 @@
-<p> Displaying Department Components</p>
+<p> This is Department Components</p>
 
-<div style= "overflow:auto;">
+<div style="overflow:auto;">
     <div class="mat-elevation-z8">
-        <mat-table [dataSource]="listData">
+        <mat-table [dataSource] = "listData">
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
             <ng-container matColumnDef="Options">
