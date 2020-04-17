@@ -11,16 +11,16 @@ export class ShowDepComponent implements OnInit {
 
   constructor(private service: DepartmentService) { }
 listData : MatTableDataSource<any>;
-displayedColumns: string[]=['options', 'DepartmentID', 'DepartmentName']
+displayedColumns: string[] = ['Options', 'DepartmentID', 'DepartmentName']
 
   ngOnInit()  {
     this.refreshDepList();
   }
 refreshDepList(){
-  //var dummyData=[{DepartmentID:1, DepartmentName:"IT"},
+//var dummyData = [{DepartmentID:1, DepartmentName:"IT"},
 //{DepartmentID:2, DepartmentName:"Finance"}]
 //this.listData = new MatTableDatSource(dummyData);
-this.service.getDepList().subscribe(data=>{
+this.service.getDepList().subscribe(data => {
   this.listData = new MatTableDataSource(data);
 });
 }
