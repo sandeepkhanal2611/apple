@@ -10,7 +10,8 @@ import {Observable} from 'rxjs';
 export class DepartmentService {
 
   constructor(private http:HttpClient) { }
-  readonly APIUrl ="http://localhost:4200/api";
+ // localhost:42209/api
+  readonly APIUrl ="http://gridecoreapp-env.peird25tbn.us-east-1.elasticbeanstalk.com/api";
 
   getDepList(): Observable<Department[]>{
     return this.http.get<Department[]>(this.APIUrl + '/department');
