@@ -3,8 +3,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { Department } from 'src/app/models/department-model';
 import { DepartmentService } from 'src/app/services/department.service';
 import {MatSort} from '@angular/material/sort';
-import {MatDialog} from '@angular/material/dialog';
-import {MatDialogConfig} from '@angular/material/dialog';
+import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
 import {AddDepComponent} from 'src/app/department/add-dep/add-dep.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
@@ -28,15 +27,12 @@ export class ShowDepComponent implements OnInit {
 listData : MatTableDataSource<any>;
 displayedColumns: string[] = ['Options', 'DepartmentID', 'DepartmentName']
 
-@ViewChild(MatSort, null) sort: MatSort;
+@ViewChild(MatSort, {static: true}) sort: MatSort;
   
 ngOnInit()  {
     this.refreshDepList();
   }
 refreshDepList(){
-//var dummyData = [{DepartmentID:1, DepartmentName:"IT"},
-//{DepartmentID:2, DepartmentName:"Finance"}]
-//this.listData = new MatTableDatSource(dummyData);
 this.service.getDepList().subscribe(data => {
   this.listData = new MatTableDataSource(data);
   this.listData.sort = this.sort; 
@@ -44,7 +40,7 @@ this.service.getDepList().subscribe(data => {
 }
 
 applyFilter (filtervalue: string){
-  this,this.listData.filter= filtervalue.trim().toLocaleLowerCase();
+  this.listData.filter= filtervalue.trim().toLocaleLowerCase();
 }
 
 onEdit(dep:Department){

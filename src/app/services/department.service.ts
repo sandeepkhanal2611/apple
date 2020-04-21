@@ -18,12 +18,13 @@ export class DepartmentService {
     return this.http.get<Department[]>(this.APIUrl + '/department');
   }
   addDepartment(dep:Department){
-    return this.http.post(this.APIUrl+'/department', dep)
+    return this.http.post(this.APIUrl+'/Department', dep)
   }
 
   deleteDepartment(id: number){
     return this.http.delete(this.APIUrl+'/department/'+id);
   }
+  
   private _listners =new Subject<any>();
   listen(): Observable<any>{
 return this._listners.asObservable();
