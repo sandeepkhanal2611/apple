@@ -7,7 +7,7 @@ import{HttpClientModule} from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import { EmployeeComponent } from './employee/employee.component';
@@ -20,7 +20,9 @@ import { AddDepComponent } from './department/add-dep/add-dep.component';
 import { EditDepComponent } from './department/edit-dep/edit-dep.component';
 import {DepartmentService} from  'src/app/services/department.service';
 import {EmployeeService} from 'src/app/services/employee.service';
-
+import {MatSortModule} from '@angular/material/sort';
+import {MatDialogModule} from '@angular/material/dialog';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -43,11 +45,14 @@ import {EmployeeService} from 'src/app/services/employee.service';
   MatIconModule, 
   MatButtonModule,
   HttpClientModule,
-   ],
+  MatSortModule,
+  MatDialogModule,
+  FormsModule,
+  MatSnackBarModule,
+],
   providers: [DepartmentService,EmployeeService],
   bootstrap: [AppComponent],
-
-  entryComponents:[AddDepComponent, EditDepComponent,AddEmpComponent, EditEmpComponent]
+   entryComponents:[AddDepComponent]
 })
 export class AppModule { }
 

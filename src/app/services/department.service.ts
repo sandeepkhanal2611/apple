@@ -3,18 +3,34 @@ import {HttpClient} from '@angular/common/http';
 
 import {Department} from 'src/app/models/department-model';
 import {Observable} from 'rxjs';
-
+import{Subject} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class DepartmentService {
 
   constructor(private http:HttpClient) { }
- // localhost:42209/api
+  formData:Department;
+ 
   readonly APIUrl ="http://gridecoreapp-env.peird25tbn.us-east-1.elasticbeanstalk.com/api";
 
   getDepList(): Observable<Department[]>{
     return this.http.get<Department[]>(this.APIUrl + '/department');
   }
+  addDepartment(dep:Department){
+    return this.http.post(this.APIUrl+'/Department', dep)
+  }
+
+  deleteDepartment(id: number){
+    return this.http.delete(this.APIUrl+'/department/'+id);
+  }
   
-}
+  private _listners =new Subject<any>();
+  listen(): Observable<any>{
+return this._listners.asObservable();
+  }
+filter(filterBy: string){
+  this._listners.next(filterBy);
+  }
+  }
+
