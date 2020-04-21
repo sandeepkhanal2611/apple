@@ -7,7 +7,7 @@ import{HttpClientModule} from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import { EmployeeComponent } from './employee/employee.component';
@@ -48,6 +48,7 @@ import {FormsModule} from '@angular/forms';
   MatSortModule,
   MatDialogModule,
   FormsModule,
+  MatSnackBarModule,
 ],
   providers: [DepartmentService,EmployeeService],
   bootstrap: [AppComponent],

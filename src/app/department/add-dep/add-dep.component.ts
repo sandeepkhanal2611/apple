@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
-import { Department } from 'src/app/models/department-model';
 import { DepartmentService } from 'src/app/services/department.service';
 import {NgForm}  from '@angular/forms';
-
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-add-dep',
   templateUrl: './add-dep.component.html',
@@ -12,9 +11,10 @@ import {NgForm}  from '@angular/forms';
 export class AddDepComponent implements OnInit {
 
   constructor(public dialogbox: MatDialogRef<AddDepComponent>,
-    private service:DepartmentService){}
-
-  ngOnInit(){
+    private service:DepartmentService,
+    private snackBar:MatSnackBar) { }
+ 
+ngOnInit(){
     this.resetForm();
   }
 
@@ -29,8 +29,17 @@ export class AddDepComponent implements OnInit {
 
   onClose(){
 this.dialogbox.close();
+this.service.filter('Register click');
   }
   onSubmit(form:NgForm){
-    console.log(form.value);
+  this.service.addDepartment( form.value).subscribe(res=>
+    {
+      this.resetForm(form);
+      this.snackBar.open(res.toString(), '', {
+        duration:3000,
+        verticalPosition:'top'
+        });
+    }
+    )
   }
 }
