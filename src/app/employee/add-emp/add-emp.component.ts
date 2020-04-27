@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialogRef} from '@angular/material/dialog';
+import {EmployeeService } from 'src/app/services/employee.service';
+import {NgForm}  from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-emp',
@@ -7,9 +11,53 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddEmpComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialogbox: MatDialogRef<AddEmpComponent>,
+    public service:EmployeeService,
+    private snackBar:MatSnackBar) { }
+    
+public listItems:Array<string>=[];
 
-  ngOnInit(): void {
-  }
-
+ngOnInit(){
+  this.resetForm();
+  this.dropdownRefresh();
 }
+
+dropdownRefresh(){
+this.service.getDepDropDownValues().subscribe(data=>{
+  console.log(data);
+  data.forEach(element=> {
+      this.listItems.push(element["DepartmentName"]);
+});
+})
+}
+
+resetForm(form?:NgForm){
+  if(form!=null)
+  form.resetForm();
+  this.service.formData = {
+    EmployeeID:0,
+    EmployeeName:'',
+    Department:'',
+    MailID:'',
+    DOJ:null
+  }
+}
+
+onClose(){
+  this.dialogbox.close();
+  this.service.filter('Register click');
+    }
+
+onSubmit(form:NgForm){
+      this.service.addEmployee(form.value).subscribe(res=>
+        {
+          this.resetForm(form);
+          this.snackBar.open(res.toString(), '', {
+            duration:3000,
+            verticalPosition:'top'
+            });
+        }
+        )
+      }
+    }
+    

@@ -6,6 +6,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
 import {AddDepComponent} from 'src/app/department/add-dep/add-dep.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {EditDepComponent} from '../edit-dep/edit-dep.component';
 
 @Component({
   selector: 'app-show-dep',
@@ -44,8 +45,14 @@ applyFilter (filtervalue: string){
 }
 
 onEdit(dep:Department){
-  console.log(dep)
+ this.service.formData = dep;
+ const dialogConfig =new MatDialogConfig();
+  dialogConfig.disableClose = true;
+  dialogConfig.autoFocus= true;
+  dialogConfig.width="70%";
+  this.dialog.open(EditDepComponent, dialogConfig);
 }
+
 
 onDelete(id:number){
   if(confirm('Are you sure to delete??')){
@@ -64,5 +71,6 @@ onAdd(){
   dialogConfig.autoFocus= true;
   dialogConfig.width="70%";
   this.dialog.open(AddDepComponent,dialogConfig);
+
 }
 }
