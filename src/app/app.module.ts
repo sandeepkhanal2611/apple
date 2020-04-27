@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import{HttpClientModule} from '@angular/common/http';
@@ -23,7 +22,8 @@ import {EmployeeService} from 'src/app/services/employee.service';
 import {MatSortModule} from '@angular/material/sort';
 import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule} from '@angular/forms';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,10 +49,12 @@ import {FormsModule} from '@angular/forms';
   MatDialogModule,
   FormsModule,
   MatSnackBarModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 ],
   providers: [DepartmentService,EmployeeService],
   bootstrap: [AppComponent],
-   entryComponents:[AddDepComponent]
+   entryComponents:[AddDepComponent,EditDepComponent,AddEmpComponent,EditEmpComponent]
 })
 export class AppModule { }
 

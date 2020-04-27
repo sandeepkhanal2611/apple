@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between">
-    <h4>Add new Department</h4>
+    <h4>Add Department</h4>
     <button mat-button (click)="onClose()">
         <mat-icon>close</mat-icon>
     </button>
@@ -7,10 +7,21 @@
 
 <div style="overflow: auto; height: 450px;">
     <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
-<div class="mt-4 input-group">
+       
+        <div class="m-3 input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Department ID </span>
+            </div>
+            <input readonly="readonly" type="text"
+            class="form-control"
+            name="DepartmentID"
+            #DepartmentID="ngModel"
+            [(ngModel)]="service.formData.DepartmentID">
+            </div>
+
+<div class="m-3 input-group">
     <div class="input-group-prepend">
         <span class="input-group-text">Department Name</span>
-
     </div>
     <input required minlength="2" type="text"
     class="form-control"
@@ -22,7 +33,7 @@
     *ngIf="DepartmentName.invalid && DepartmentName.touched">
     Please enter Department name.
 </div>
-<button class="mt-4" mat-raised-button
+<button class="m-3" mat-raised-button
 color="primary" type="submit"
 [disabled]="form.invalid">Add Department</button>
 </form>

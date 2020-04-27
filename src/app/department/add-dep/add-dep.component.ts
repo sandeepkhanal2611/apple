@@ -3,6 +3,7 @@ import {MatDialogRef} from '@angular/material/dialog';
 import { DepartmentService } from 'src/app/services/department.service';
 import {NgForm}  from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-add-dep',
   templateUrl: './add-dep.component.html',
@@ -32,7 +33,6 @@ this.dialogbox.close();
 this.service.filter('Register click');
   }
   onSubmit(form:NgForm){
-
   this.service.addDepartment(form.value).subscribe(res=>
     {
       this.resetForm(form);
